@@ -1,0 +1,80 @@
+<!--
+  Generated template for the ModalseepricesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> 	{{ 'Prices' | translate }} </ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()">{{ 'Close' | translate }} </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-card margin-top class="text-bluegray" *ngFor="let item of list">
+        
+      <ion-card-header padding-left no-margin>
+            <h2 class="text-bluegray"><b>{{item.title}}</b></h2>
+      </ion-card-header>
+      <hr style="height: 2px" class="margin-top-0" color="primary">
+      <ion-card-content>
+        
+        <ion-row>
+            <ion-col col-8>
+                {{ 'Price' | translate }}
+            </ion-col>
+            <ion-col col-4>
+                S/.{{item.price}}
+            </ion-col>
+        </ion-row>
+        <!-- <ion-row >
+            <ion-col col-8>
+                Second reason
+            </ion-col>
+            <ion-col col-4>
+                S/.70
+            </ion-col>
+        </ion-row> -->
+        
+      </ion-card-content>
+        
+    </ion-card>
+
+
+</ion-content>
+
+    <!-- <ion-card margin-top>
+        
+      <ion-card-header padding-left no-margin>
+            <h2 class="text-bluegray"><b>Name of the doctor office N2</b></h2>
+      </ion-card-header>
+      <hr style="height: 2px" class="margin-top-0" color="primary">
+      <ion-card-content class="text-bluegray">
+        
+        <ion-row>
+            <ion-col col-8>
+                First reason
+            </ion-col>
+            <ion-col col-4>
+                S/.80
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-8>
+                Second reason
+            </ion-col>
+            <ion-col col-4>
+                S/.120
+            </ion-col>
+        </ion-row>
+        
+      </ion-card-content>
+        
+    </ion-card> -->

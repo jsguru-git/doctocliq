@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'Login' | translate }}  </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+ 
+ 	<form [formGroup]="registerForm">  	
+		<div margin align="text-center">
+			<img class="img-center" src="assets/img/logoback.png"/>
+		</div>	
+
+		<ion-row margin-top>
+	  	  <ion-item>
+	  		<ion-label floating><ion-icon name="person" margin-right></ion-icon>{{ 'Mobile' | translate }}</ion-label>
+		    <ion-input type="tel" formControlName="phone" ></ion-input>
+		  </ion-item>
+	  	</ion-row>
+
+	  	<ion-row margin-top>
+	  	  <ion-item>
+	  		<ion-label floating><ion-icon name="lock" margin-right></ion-icon>{{ 'Password' | translate }}</ion-label>
+		    <ion-input type="password" formControlName="password"   ></ion-input>
+		  </ion-item>
+	  	</ion-row>
+	 	
+		<ion-row margin-top>
+			<button ion-button color="secondary" block margin-top (click)="login();">
+		    {{ 'Login' | translate }}  
+		  	</button>	 
+		</ion-row>
+
+		<div text-center>	  	
+		  	<p> {{ 'Forgotpassword' | translate }}  ?
+		  	<a (click)="openForgotpasswordModal()">   {{ 'Click' | translate }} {{ 'here' | translate }}   </a>
+		  	</p>
+		</div>
+
+ 	</form>
+
+</ion-content>
+
+

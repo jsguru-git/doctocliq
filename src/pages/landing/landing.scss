@@ -1,0 +1,30 @@
+page-landing {
+
+	ion-row {
+        align-items: center;
+        text-align: center;
+    }
+ 
+	ion-item {
+	    border-radius: 5px !important;
+        //margin-bottom: 10px;
+        background-color: #fffff6;
+        opacity: 0.7;
+        font-size: 0.9em;
+	}
+
+    ion-icon{
+        text-align: right;
+        align-items: right;
+    }
+
+    ion-grid {
+        justify-content: center;
+    }
+
+    margin-top-100{
+        margin-top: 100px
+    }
+	
+}
+

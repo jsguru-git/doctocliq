@@ -1,0 +1,211 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{ 'Doctor' | translate }}  {{ 'Profile' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content margin-top>
+
+	<ion-card margin-top>
+
+	  <ion-card-header class="blue-top-back" padding-left no-margin>
+	        <h2>{{item.title}} {{item.first_name}} {{item.last_name}} - {{item.speciality}}</h2>
+	  </ion-card-header>
+	  <!-- <hr no-padding color="primary"> -->
+
+	  <ion-item>
+	    <ion-avatar item-start no-margin>
+	      <img [src]="api.ImageUrl+item.image_profile">
+	      <ion-row class="margin-top-5"> 
+			  <ion-icon  *ngIf="item.rate>=1"name="star" class="font-14" color="yellow"></ion-icon>
+		      <ion-icon *ngIf="item.rate>=2"name="star" class="font-14" color="yellow"></ion-icon>
+		      <ion-icon *ngIf="item.rate>=3"name="star" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon *ngIf="item.rate>=4" name="star" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon *ngIf="item.rate>=5" name="star" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon *ngIf="item.rate%1!=0" name="star-half" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon  *ngIf="item.rate==0"name="star-outline" class="font-14" color="yellow"></ion-icon>
+		      <ion-icon *ngIf="item.rate<=1"name="star-outline" class="font-14" color="yellow"></ion-icon>
+		      <ion-icon *ngIf="item.rate<=2 "name="star-outline" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon *ngIf="item.rate<=3" name="star-outline" class="font-14" color="yellow"></ion-icon>
+			  <ion-icon *ngIf="item.rate<=4" name="star-outline" class="font-14" color="yellow"></ion-icon>
+	      </ion-row>
+
+	      <h5 class="essential-padding pull-center" (click)="openCommentsModal()">
+	    	{{item.total_comments}} <u>opin.</u>
+	      </h5>
+	    </ion-avatar>
+
+	    <ion-row>
+	      <p>
+	      <!-- <ion-icon name="medkit" class="font-16"></ion-icon> -->
+	      CMP/COP : {{item.cmp}}</p>
+	    </ion-row>
+	    <ion-row>
+	      <p>
+	      <ion-icon name="medkit" class="font-16"></ion-icon>
+	      &nbsp;<b>{{(item.establishments && item.establishments.length)?item.establishments[0].name:''}}</b></p>
+	    </ion-row>
+	    
+	    <ion-row>
+	      <p>
+	      <ion-icon name="pin" class="font-16"></ion-icon>
+	      &nbsp; <br>{{(item.establishments && item.establishments.length)?item.establishments[0].location.address:''}} </p> <br>
+	      <ion-note> {{districtname}} 
+			  <!-- {{(item.establishments && item.establishments.length)?item.establishments[0].location.reference:''}} -->
+			</ion-note>
+	    </ion-row>
+
+	    <ion-row>
+	      	<ion-col col-6>
+				<!-- <ion-icon name="card" class="font-16 margin-top-5"></ion-icon> -->
+				<u (click)="openPricesModal()">{{ 'Seeprices' | translate }}</u>
+			</ion-col>
+			<ion-col col-6 *ngIf="item.establishments.length>0">
+				<button (click)="openPhonesModal()" class="green-back">
+					<ion-icon name="call" no-padding class="font-16"></ion-icon>&nbsp;
+					{{ 'Seephones' | translate }}
+				</button>	    
+			</ion-col>
+		</ion-row>
+
+	  </ion-item>
+
+	  <div class="pull-center blue margin-top-5"  *ngIf="item.establishments.length>0&&item.establishments[0].schedules.length>0">
+	  	<b>{{ 'Choosetime' | translate }}:</b>
+	  </div>
+	  <div class="pull-center blue margin-top-5"  *ngIf="item.establishments.length==0||item.establishments[0].schedules.length==0">
+	  	<b>{{ 'availableintwodays' | translate }}:</b>
+	  </div>
+ 
+	  <ion-card-content no-padding class="margin-top-0" *ngIf="item.establishments.length>0&&item.establishments[0].schedules.length>0">
+	    
+	    <ion-grid>
+
+	    	<ion-row no-margin>
+	    		
+	    		<ion-col col-1>
+ 	    		<ion-icon ios="ios-arrow-back" md="ios-arrow-back" (click)="backarrow()" class="font-20"></ion-icon>
+	    		
+	    		</ion-col>
+
+	    		<ion-col col-10 no-padding class="skyblue-back">
+				
+				<ion-row class="margin-right-5">    			
+	    		
+	    			<ion-col class="pull-center" *ngFor="let item_day of daylist">
+	    				{{ item_day.date}}
+	    			</ion-col>
+		    		 
+
+		    	</ion-row>
+
+	    		</ion-col>
+
+	    		<ion-col col-1>
+ 	    		<ion-icon ios="ios-arrow-forward" (click)="nextarrow()" md="ios-arrow-forward" class="font-20"></ion-icon>
+	    		
+	    		</ion-col>
+
+	    	</ion-row>
+	    	<ion-row no-margin>
+	    		
+	    		<ion-col col-1>
+	    	
+	    		</ion-col>
+
+	    		<ion-col col-10 no-padding>
+				<ion-row >    			
+	    		<ion-scroll scrollY="true" style="width:100%;height:100px">
+	    		<ion-row>
+ 	    			<ion-col class="pull-center" *ngFor="let item_day of daylist">
+						<p  class="margin-top-5" [ngClass]="{'blue-top-back radiustime' : item_time.id == itemchoose,'noday':item_day.empty}"
+						(click)="gotoStep1(item_time.time_start,item_time.date,item_time)" 
+							*ngFor="let item_time of item_day.schedules">
+							 {{gettime(item_time.time_start)}} 
+						</p>
+	    				 
+	    			</ion-col> 
+		    	</ion-row>
+		    	</ion-scroll>
+		    	</ion-row>
+	    		</ion-col>
+
+	    		<ion-col col-1>
+	    		</ion-col>
+
+	    	</ion-row>
+	    
+    	</ion-grid>
+
+	  </ion-card-content>
+
+	</ion-card>
+
+	<ion-card margin-top>
+
+		<ion-card-header class="blue-top-back" padding-left no-margin>
+	        <h2>{{ 'Moreaboutthedoctor' | translate }}</h2>
+	  	</ion-card-header>
+
+		<ion-card-content class="text-bluegray">
+
+			<ion-row margin-top>
+			<b> {{ 'Presentation' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+			<ion-row>
+			{{item.description}}
+			</ion-row>
+
+			<ion-row margin-top>
+			<b>{{ 'Offices' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+			
+			<ion-row   *ngFor="let item2 of item.establishments">
+				{{item2.name}}<br> 
+			</ion-row>
+
+			<ion-row margin-top>
+			<b>{{ 'Specialities' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+			<ion-row>{{item.speciality}}
+			 	
+			</ion-row>
+
+			<ion-row margin-top>
+			<b> {{ 'Education' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+			
+			<ion-row>{{item.formation}}
+			</ion-row>
+
+			<ion-row margin-top>
+			<b>{{ 'Languages' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+			<ion-row>
+			{{item.languages}}
+			</ion-row>
+
+			<ion-row margin-top>
+			<b> {{ 'Homeservice' | translate }}</b>
+			</ion-row>
+			<hr style="height: 2px" class="margin-top-0" color="primary">
+
+			<ion-row>
+			{{item.practical_information}}
+			</ion-row>
+
+		</ion-card-content>
+
+	</ion-card>
+
+	
+
+

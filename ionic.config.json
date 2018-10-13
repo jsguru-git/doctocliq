@@ -1,0 +1,8 @@
+{
+  "name": "doctoc",
+  "app_id": "7bbe8a64",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

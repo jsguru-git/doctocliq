@@ -1,0 +1,108 @@
+<ion-header>
+	<link rel="stylesheet" href="build/angular-calendar.css">
+	<link rel="stylesheet" href="build/angular-calendar-week-hours-view.scss">
+	  <ion-navbar no-padding>
+		<ion-title>
+				<ion-row>
+					<ion-col col-4>
+						<button ion-button full clear icon-only mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+							<ion-icon name="ios-arrow-back"></ion-icon>{{'Back' | translate}}
+						</button>
+					</ion-col>
+					<ion-col col-4 text-center>
+						<ion-label>{{'Agenda' | translate}}</ion-label>
+					</ion-col>
+					<ion-col col-4>
+					</ion-col>
+				</ion-row>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+   
+<ion-content>
+	<ion-row>
+		<ion-col col-12 col-md-3>
+			<ion-row>
+				<ion-col col-4 no-padding>
+					<ion-label class="label-startendday">{{ _startdayOfWeek }} - {{ _enddayOfWeek }}</ion-label>
+					<!-- <ion-datetime displayFormat="MMM DD" [(ngModel)]="enddayOfweek"></ion-datetime> -->
+					<!-- <ion-label>{{ viewDate | calendarDate:(view + 'ViewTitle') | translate }}</ion-label> -->
+				</ion-col>
+				<ion-col col-4 no-padding>
+					<ion-row>
+						<ion-col col-2 no-padding>
+							<button ion-button full clear icon-only mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)="decrement()" [disabled]="prevBtnDisabled">
+								<ion-icon name="ios-arrow-back"></ion-icon>
+							</button>
+						</ion-col>
+						<ion-col col-8 no-padding>
+							<button ion-button full clear mwlCalendarToday [(viewDate)]="viewDate">Today</button>
+						</ion-col>
+						<ion-col col-2 no-padding>
+							<button ion-button full clear icon-only mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)="increment()" [disabled]="nextBtnDisabled">
+								<ion-icon name="ios-arrow-forward"></ion-icon>
+							</button>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+				<ion-col col-2 no-padding></ion-col>
+				<ion-col col-2 no-padding>
+					<!-- <ion-segment [(ngModel)]="sections.selectedSection">
+						<ion-segment-button value="{{sections.first}}">
+							First section
+						</ion-segment-button>
+						<ion-segment-button value="{{sections.second}}">
+							Second section
+						</ion-segment-button>
+					</ion-segment> -->
+
+					<ion-toggle toggle-class="toggle-assertive"
+					ng-model="emailNotification"
+					ng-true-value="'Subscribed'"
+					ng-false-value="'Unubscribed'">
+		  Newsletter
+		</ion-toggle>
+
+					<!-- <ion-toggle [(ngModel)]="switch_string" >{{switch_string}}</ion-toggle> -->
+					<!-- <kendo-switch></kendo-switch> -->
+				</ion-col>
+			</ion-row>
+		</ion-col>
+	</ion-row>
+
+	<!-- <mwl-calendar-week-view
+		[viewDate]="viewDate"
+		[events]="events"
+		[excludeDays]="excludeDays"
+		(eventClicked)="handleEvent($event.event)"
+	>
+	</mwl-calendar-week-view>	 -->
+<!-- <div class="col-md-4">
+		<div class="btn-group">
+		  <div class="btn btn-primary" (click)="changeView('month')" [class.active]="view === 'month'">Month</div>
+		  <div class="btn btn-primary" (click)="changeView('week')" [class.active]="view === 'week'">Week</div>
+		  <div class="btn btn-primary" (click)="changeView('day')" [class.active]="view === 'day'">Day</div>
+		</div>
+	</div> -->
+
+	<!-- <div [ngSwitch]="view">
+		<mwl-calendar-week-view *ngSwitchCase="'Agenda'"
+			[viewDate]="viewDate"
+			[events]="events">
+		</mwl-calendar-week-view>	
+	</div> -->
+	<iq-calendar-week-hours-view 
+		[viewDate]="viewDate"
+		[events]="events"
+		[excludeDays]="excludeDays"
+		[hourSegments]="2"
+		[dayStartHour]="9"
+		[dayEndHour]="21"
+		(eventClicked)="handleEvent($event.event)"
+		(hourSegmentClicked)="hourSegmentClicked($event)"
+		(eventTimesChanged)="eventTimesChanged($event)"
+		[weekStartsOn]="1"
+		[refresh]="refresh"
+		[locale]="locale">
+	</iq-calendar-week-hours-view>	
+</ion-content>

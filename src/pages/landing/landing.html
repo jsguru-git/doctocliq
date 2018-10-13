@@ -1,0 +1,56 @@
+
+<ion-content class="landing" padding>
+
+<!-- <div align="text-left">
+	<img width="50px" src="assets/img/logoback.png"/>
+</div> -->
+<!-- <ion-grid margin-top-100> -->
+
+	  	<ion-row margin-bottom>
+	      <ion-col col-8>
+	      	<img src="assets/img/logoback2.png"/>
+	      </ion-col>
+	  	</ion-row>		
+
+	  	<ion-row class="margin-top-50">
+	  	  <ion-item no-lines (click)="gotoSearch1();">
+	  		<ion-label>
+	  			<ion-icon name="medkit" margin-right></ion-icon>
+	  			{{(speciality && speciality.length)?speciality:('Speciality' | translate)}}
+	  		</ion-label>
+	  		<!--
+		    <ion-input type="search" [disabled]="true" value="{{speciality}}" placeholder="{{ 'Speciality' | translate }}"></ion-input>-->
+		  </ion-item>
+	  	</ion-row>
+
+	  	<ion-row margin-top>
+	  	 <ion-item no-lines (click)="gotoSearch2();">
+	  		<ion-label>
+	  			<ion-icon name="pin" margin-right></ion-icon>
+	  			{{(district && district.length)?district:('Where' | translate)}}
+	  		</ion-label>
+	  		<!--
+		    <ion-input type="search" value={{district}} placeholder=" {{ 'Where' | translate }}?"></ion-input>
+		-->
+		  </ion-item>
+	  	</ion-row>
+	 	
+		<ion-row margin-top>
+			<button ion-button padding-top padding-bottom color="secondary" block (click)="gotoDoctorlist();">  {{ 'Search' | translate }}  
+			<ion-icon margin-left name="search"></ion-icon>
+			</button>
+		</ion-row>
+	
+</ion-content>
+
+<ion-footer text-center padding>
+
+	
+	  <button ion-button margin-right (click)="gotoLogin();"> {{ 'Login' | translate }}  
+      </button>
+
+      <button ion-button margin-left (click)="gotoRegister();"> {{ 'Register' | translate }} 
+      </button>
+
+	
+</ion-footer>

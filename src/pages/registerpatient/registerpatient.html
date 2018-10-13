@@ -1,0 +1,78 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'regpatient' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<form  [formGroup]="registerForm">
+
+		<ion-row >	
+			  <ion-item>
+			    <ion-input type="text" formControlName="firstname" placeholder="{{ 'firstname' | translate }}"></ion-input>
+			  </ion-item>
+		</ion-row>
+
+		<ion-row >	
+			  <ion-item>
+			    <ion-input type="text"formControlName="lastname" placeholder="{{ 'Lastname' | translate }}"></ion-input>
+			  </ion-item>
+		</ion-row>
+
+		<ion-row >	
+			  <ion-item>
+			    <ion-input type="email" formControlName="email" placeholder="{{ 'Email' | translate }}"></ion-input>
+			  </ion-item>
+		</ion-row>
+
+		<ion-row >	
+			  <ion-item>
+			    <ion-input type="password"  formControlName="password" placeholder="{{ 'Password' | translate }}"></ion-input>
+			  </ion-item>
+		</ion-row>
+
+		<ion-row >	
+			  <ion-item>
+			    <ion-input type="tel" formControlName="phone" placeholder="{{ 'Mobile' | translate }}"></ion-input>
+			  </ion-item>
+		</ion-row>
+<ion-row>
+		  	<ion-col>
+		  		<ion-item>
+						<ion-label>{{ 'District' | translate }}</ion-label>
+						<ion-input  *ngIf="shared.districtlist.length>=15"  (click)="gotoSearch2()" disabled value="{{districtselect}}" placeholder="{{ 'District' | translate }}"></ion-input>
+						<ion-select formControlName="district"  *ngIf="shared.districtlist.length<15" >
+							<ion-option *ngFor="let item of shared.districtlist" [value]=item.id selected>{{item.name}}</ion-option>
+				 		 </ion-select>
+			  </ion-item>
+	  		</ion-col>
+			</ion-row>  
+		<ion-row margin-top>
+		  <ion-col col-2>
+		  	<ion-item no-lines>
+		  		<ion-label ></ion-label>
+	  			<ion-checkbox formControlName="agreeterms"></ion-checkbox>
+	  		</ion-item>
+	  	  </ion-col>
+
+	  	  <ion-col col-10>
+	  	  	<ion-item no-lines no-padding>
+	  			<ion-label class="text-bluegray font-12" no-margin> {{ 'Accept' | translate }} <u (click)="gotopage()">   {{ 'Legalterms' | translate }}</u>   {{ 'and' | translate }} <u (click)="gotopage()">  {{ 'Privacypolicy' | translate }} </u></ion-label>
+	  		</ion-item>
+	  	  </ion-col>
+		</ion-row>
+	
+		<ion-row>
+			  <button ion-button margin color="secondary" block text-center (click)="gotoPatientsms();">
+			     {{ 'Register' | translate }}  
+			  </button>		  		  
+		</ion-row>
+	
+ </form>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<!--
+  Generated template for the DoctorsmsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{ 'Validationmobile' | translate }} </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	  	<ion-row padding>{{ 'msgvalidation' | translate }} 
+		</ion-row>
+<form  [formGroup]="registerForm">
+		<ion-row>
+		  <ion-col col-6 offset-3>
+		  	<ion-item>
+		  	    <ion-input class="pull-center" type="tel" formControlName="code"  placeholder="Ex: 3912"></ion-input>
+	  		</ion-item>
+	  	  </ion-col>
+	  	</ion-row>
+
+		<ion-row padding-right>
+			<ion-col col-6>
+			  <button ion-button margin color="secondary" block (click)="resendsms();">
+			    {{ 'Resendcode' | translate }} 
+			  </button>	
+			</ion-col>
+			<ion-col col-6>
+			  <button ion-button margin color="secondary" block (click)="validatecode();">
+			      {{ 'Validate' | translate }} 
+			  </button>	
+			</ion-col>
+	  	</ion-row>
+
+	  	<ion-row padding> {{ 'resendsmsm' | translate }} 
+ 		</ion-row>
+</form>
+	  	<ion-row padding no-margin class="text-gray font-12">
+				{{ 'resendissue' | translate }} 
+ 		</ion-row>
+
+</ion-content>

@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ModalfiltersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'Changeyoursearch' | translate }}</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()">{{ 'Close' | translate }}</button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+<ion-row class="margin-top-50">
+	  	  <ion-item no-lines (click)="gotoSearch1();">
+	  		<ion-label><ion-icon name="medkit" margin-right></ion-icon></ion-label>
+		    <ion-input type="search" value="{{speciality}}" placeholder="{{ 'Speciality' | translate }}"></ion-input>
+		  </ion-item>
+	  	</ion-row>
+
+	  	<ion-row margin-top>
+	  	 <ion-item no-lines (click)="gotoSearch2();">
+	  		<ion-label><ion-icon name="pin" margin-right></ion-icon></ion-label>
+		    <ion-input type="search" value={{district}} placeholder=" {{ 'Where' | translate }}?"></ion-input>
+		  </ion-item>
+	  	</ion-row>
+    <ion-row margin-top>
+			  <button ion-button margin color="secondary" block text-center  (click)="closeModal();">
+			        {{ 'Search' | translate }}
+			  </button>		  		   
+		</ion-row>
+
+</ion-content>
+<!-- 
+    <ion-row>
+        <ion-col>
+          <ion-item>
+             <ion-label>Speciality</ion-label>
+          <ion-select   >
+              <ion-option *ngFor="let item of specialitylist" [value]=item.id selected>{{item.name}}</ion-option>
+          </ion-select>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+      
+    <ion-row>
+        <ion-col>
+          <ion-item>
+             <ion-label>District</ion-label>
+          <ion-select  >
+              <ion-option *ngFor="let item of districtlist" [value]=item.id selected>{{item.name}}</ion-option>
+          </ion-select>
+          </ion-item>
+        </ion-col>
+    </ion-row>  -->

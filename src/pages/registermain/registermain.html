@@ -1,0 +1,34 @@
+<!--
+  Generated template for the RegistermainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>   {{ 'Register' | translate }} {{ 'here' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+
+  <div align="text-center">
+    <img class="img-center" src="assets/img/logoback.png"/>
+  </div>
+
+  <p text-center padding > <font size="4">  {{ 'asktype' | translate }}</font></p>
+
+  <div text-center padding>
+    <button ion-button color="secondary" (click)="gotoRegisterDoctor();">
+        {{ 'Doctor' | translate }}
+    </button> 
+
+    <button ion-button color="secondary" (click)="gotoRegisterPatient();">
+        {{ 'Patient' | translate }}
+    </button>
+  </div>
+
+</ion-content>

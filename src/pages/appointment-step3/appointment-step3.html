@@ -1,0 +1,97 @@
+<!--
+  Generated template for the AppointmentStep3Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'Step' | translate }} 3</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+		<ion-grid>
+			<ion-row>
+				<ion-col col-3 offset-1 class="center">
+					<div class="pull-center">
+						<button ion-button class="blue-circle-back">1</button>
+					</div>
+				</ion-col>
+				
+				<ion-col col-1 no-padding class="padding-top-20">
+					<hr>
+				</ion-col>
+
+				<ion-col col-3 text-center>
+					<div class="center">
+						<button ion-button class="blue-circle-back">2</button>
+					</div>
+				</ion-col>
+				
+				<ion-col col-1 no-padding class="padding-top-20">
+					<hr>
+				</ion-col>
+
+				<ion-col col-3>
+					<div class="center">
+						<button ion-button class="blue-circle-back">3</button>
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+		<hr>
+
+		<p>   {{ 'msgstep3' | translate }}</p>
+		
+		<ion-card padding-left>
+
+		    <ion-item>
+			    <ion-avatar item-start no-margin>
+			    	<img [src]="api.ImageUrl+item.image_profile">
+			    </ion-avatar>
+			    <ion-row> {{item.title}} {{item.first_name}} {{item.last_name}} - 
+                 <p>  {{item.speciality}}</p> 
+			    </ion-row>
+		    </ion-item>
+
+		    <ion-row class="margin-top-5 blue">
+		      <ion-icon ios="md-calendar" md="md-calendar"></ion-icon>
+             <b>&nbsp;{{ 'Date' | translate }}:  {{dateAppointment}} {{ 'at' | translate }} {{timeAppointment}}</b> 
+		    </ion-row>
+
+		    <ion-row class="margin-top-5">
+		      <ion-icon name="card" class="font-16"></ion-icon>
+		      &nbsp;  {{ 'Price' | translate }}: S/.{{reason.price}}
+		    </ion-row>
+
+		    <ion-row class="margin-vertical-5">
+		      <ion-icon name="pin" class="font-16"></ion-icon>
+		      &nbsp;  {{ 'Address' | translate }}: {{(item.establishments && item.establishments.length)?item.establishments[0].location.address:''}} ,{{districtname}}<br>
+		      {{(item.establishments && item.establishments.length)?item.establishments[0].location.reference:''}}
+		    </ion-row>
+				<ion-row class="margin-vertical-5">
+		      <ion-icon name="call" class="font-16"></ion-icon>
+		      &nbsp;  : {{item.establishments[0].phone}}
+				</ion-row>
+ <!-- {{ 'Phonenumbers' | translate }} -->
+		</ion-card>
+
+		<ion-card padding-left>
+		    <ion-row class="margin-top-5"> {{ 'msgdoctor' | translate }}
+				<ion-item>
+					<ion-textarea name="comment" rows="2"[(ngModel)]="comment"></ion-textarea>
+				</ion-item>
+			</ion-row>
+		</ion-card>
+
+		<div text-center>
+			<button ion-button block class="blue2-back" margin-top (click)="gotoStep4()">{{ 'Confirm' | translate }}</button>
+		</div>
+
+</ion-content>
